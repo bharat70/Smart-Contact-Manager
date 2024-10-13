@@ -1,5 +1,6 @@
 package com.scm.scm.entities;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -39,15 +40,16 @@ public class User implements UserDetails {
     private String name;
     @Column(unique = true, nullable = false)
     private String email;
-    // @Getter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE)
     private String password;
     @Column(length = 1000)
     private String about;
-    @Column(length = 1000)
+    @Column(length = 1000) 
+    @Basic(fetch = FetchType.LAZY)
     private String profilePic;
     private String phoneNumber;
 
-    // @Getter(value = AccessLevel.NONE)
+    @Getter(value = AccessLevel.NONE)
     // information
     private boolean enabled = false;
 

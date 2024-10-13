@@ -44,7 +44,6 @@ public class FileValidator implements ConstraintValidator<ValidFile, MultipartFi
         // if(bufferedImage.getHe)
 
         // } catch (IOException e) {
-        // // TODO Auto-generated catch block
         // e.printStackTrace();
         // }
         return true;

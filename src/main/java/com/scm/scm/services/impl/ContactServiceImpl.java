@@ -11,7 +11,6 @@ import com.scm.scm.entities.Contact;
 import com.scm.scm.entities.User;
 import com.scm.scm.helpers.ResourceNotFoundException;
 import com.scm.scm.repository.ContactRepo;
-import com.scm.scm.services.ContactService;
 
 @Service
 public class ContactServiceImpl implements ContactService

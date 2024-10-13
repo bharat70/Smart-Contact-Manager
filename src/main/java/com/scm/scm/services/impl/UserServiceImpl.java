@@ -7,7 +7,6 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.scm.scm.services.UserService;
 import com.scm.scm.entities.User;
@@ -15,9 +14,7 @@ import com.scm.scm.helpers.AppConstants;
 import com.scm.scm.helpers.Helper;
 import com.scm.scm.helpers.ResourceNotFoundException;
 import com.scm.scm.repository.UserRepo;
-import com.scm.scm.repository.UserRepo;
 import com.scm.scm.services.EmailService;
-import com.scm.scm.services.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

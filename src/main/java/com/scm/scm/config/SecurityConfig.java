@@ -93,7 +93,7 @@ public class SecurityConfig {
             // public void onAuthenticationFailure(HttpServletRequest request,
             // HttpServletResponse response,
             // AuthenticationException exception) throws IOException, ServletException {
-            // // TODO Auto-generated method stub
+            //
             // throw new UnsupportedOperationException("Unimplemented method
             // 'onAuthenticationFailure'");
             // }
@@ -106,7 +106,6 @@ public class SecurityConfig {
             // public void onAuthenticationSuccess(HttpServletRequest request,
             // HttpServletResponse response,
             // Authentication authentication) throws IOException, ServletException {
-            // // TODO Auto-generated method stub
             // throw new UnsupportedOperationException("Unimplemented method
             // 'onAuthenticationSuccess'");
             // }

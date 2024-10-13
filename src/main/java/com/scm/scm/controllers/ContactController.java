@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import com.scm.scm.entities.Contact;
 import com.scm.scm.entities.User;
@@ -82,9 +83,26 @@ public class ContactController {
         // 2 process the contact picture
 
         // image process
+        Contact contact = new Contact();
+        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+            try{
+                String filename = UUID.randomUUID().toString();
+                String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
+                contact.setPicture(fileURL);
+                contact.setCloudinaryImagePublicId(filename);
+            }
+            catch(MaxUploadSizeExceededException m){
+                imageService.uploadImage(null, username);
+                session.setAttribute("message", Message.builder()
+                    .content("Maximum upload size exceeded")
+                    .type(MessageType.red)
+                    .build());
+                    return "user/add_contact";
+            }
+
+        }
 
         // uplod karne ka code
-        Contact contact = new Contact();
         contact.setName(contactForm.getName());
         contact.setFavorite(contactForm.isFavorite());
         contact.setEmail(contactForm.getEmail());
@@ -95,13 +113,6 @@ public class ContactController {
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
 
-        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
-            String filename = UUID.randomUUID().toString();
-            String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
-            contact.setPicture(fileURL);
-            contact.setCloudinaryImagePublicId(filename);
-
-        }
         contactService.save(contact);
         System.out.println(contactForm);
 
